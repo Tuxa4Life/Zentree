@@ -121,7 +121,20 @@ const ApiProvider = ({ children }) => {
 
             treeObj.children.forEach(child => aux(child, treeObj))
         }
-        tree.forEach(root => root.children.forEach(child => aux(child, root)))
+        tree.forEach(root => {
+            const spouseId = getSpouseId(root.id)
+            if (spouseId) {
+                const spouse = getMember(spouseId)
+                edges.push({
+                    id: `${root.id}-${spouse.id}`,
+                    source: root.id,
+                    target: spouse.id,
+                    sourceHandle: 'right-source'
+                })
+            }
+
+            root.children.forEach(child => aux(child, root))
+        })
 
         return edges
     }
