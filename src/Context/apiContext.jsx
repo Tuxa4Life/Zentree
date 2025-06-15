@@ -11,11 +11,20 @@ const ApiProvider = ({ children }) => {
     const [childRelations, setChildRelations] = useState([])
     const [spouseRelations, setSpouseRelations] = useState([])
 
+    const [query, setQuery] = useState('')
     useEffect(() => {
-        supabase.from('members').select('*').then((data) => setMembers([...data.data]))
-        supabase.from('children').select('*').then((data) => setChildRelations([...data.data]))
-        supabase.from('spouses').select('*').then((data) => setSpouseRelations([...data.data]))
-    }, [])
+        getFamily(query)
+    }, [query])
+
+    const getFamily = async (surname) => {
+        const { data: member_data } = await supabase.rpc('get_family', { lastname_input: surname });
+        const { data: spouse_data } = await supabase.rpc('get_spouses', { lastname_input: surname });
+        const { data: children_data } = await supabase.rpc('get_children', { lastname_input: surname });
+        
+        setMembers([...member_data])
+        setChildRelations([...children_data])
+        setSpouseRelations([...spouse_data])
+    }
 
     const buildTree = () => {
         const map = {};
@@ -170,7 +179,7 @@ const ApiProvider = ({ children }) => {
         return false
     }
 
-    const data = { members, spouseRelations, childRelations, buildNodes, buildEdges }
+    const data = { members, spouseRelations, childRelations, buildNodes, buildEdges, setQuery }
     return <ApiContext.Provider value={data}>
         {children}
     </ApiContext.Provider>
