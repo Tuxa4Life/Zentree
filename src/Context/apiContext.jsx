@@ -17,13 +17,9 @@ const ApiProvider = ({ children }) => {
     }, [query])
 
     const getFamily = async (surname) => {
-        const { data: member_data } = await supabase.rpc('get_family', { lastname_input: surname });
-        const { data: spouse_data } = await supabase.rpc('get_spouses', { lastname_input: surname });
-        const { data: children_data } = await supabase.rpc('get_children', { lastname_input: surname });
-        
-        setMembers([...member_data || []])
-        setChildRelations([...children_data || []])
-        setSpouseRelations([...spouse_data || []])
+        supabase.rpc('get_family', { lastname_input: surname }).then(({ data }) => setMembers([...data || []]))
+        supabase.rpc('get_spouses', { lastname_input: surname }).then(({ data }) => setSpouseRelations([...data || []]))
+        supabase.rpc('get_children', { lastname_input: surname }).then(({ data }) => setChildRelations([...data || []]))
     }
 
     const buildTree = () => {

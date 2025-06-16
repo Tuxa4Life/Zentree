@@ -53,7 +53,7 @@ const Graph = () => {
             cardId && <MemberCard id={cardId} close={() => setCardId('')} />
         }
 
-        <button style={{ position: 'absolute', bottom: '8px', right: '5px' }} class="ui icon secondary inverted button">Add family member</button>
+        <button style={{ position: 'absolute', bottom: '8px', right: '5px' }} className="ui icon secondary inverted button">Add family member</button>
     </div>
 }
 
