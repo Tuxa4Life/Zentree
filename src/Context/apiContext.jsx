@@ -21,9 +21,9 @@ const ApiProvider = ({ children }) => {
         const { data: spouse_data } = await supabase.rpc('get_spouses', { lastname_input: surname });
         const { data: children_data } = await supabase.rpc('get_children', { lastname_input: surname });
         
-        setMembers([...member_data])
-        setChildRelations([...children_data])
-        setSpouseRelations([...spouse_data])
+        setMembers([...member_data || []])
+        setChildRelations([...children_data || []])
+        setSpouseRelations([...spouse_data || []])
     }
 
     const buildTree = () => {
@@ -124,6 +124,7 @@ const ApiProvider = ({ children }) => {
                     id: `${treeObj.id}-${spouse.id}`,
                     source: treeObj.id,
                     target: spouse.id,
+                    label: '❤️',
                     sourceHandle: 'right-source'
                 })
             }
@@ -138,6 +139,7 @@ const ApiProvider = ({ children }) => {
                     id: `${root.id}-${spouse.id}`,
                     source: root.id,
                     target: spouse.id,
+                    label: '❤️',
                     sourceHandle: 'right-source'
                 })
             }
@@ -179,7 +181,7 @@ const ApiProvider = ({ children }) => {
         return false
     }
 
-    const data = { members, spouseRelations, childRelations, buildNodes, buildEdges, setQuery }
+    const data = { members, spouseRelations, childRelations, getMember, buildNodes, buildEdges, setQuery }
     return <ApiContext.Provider value={data}>
         {children}
     </ApiContext.Provider>

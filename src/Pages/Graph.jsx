@@ -7,11 +7,13 @@ import ChildNode from "../Misc/ChildNode";
 import '@xyflow/react/dist/style.css';
 import '../Styles/app.css'
 import { useParams } from "react-router-dom";
+import MemberCard from "../Components/MemberCard";
 
 const Graph = () => { // TODO: Loading screen
     const { members, spouseRelations, childRelations, buildNodes, buildEdges, setQuery } = useApiContext()
     const [nodes, setNodes] = useState([])
     const [edges, setEdges] = useState([])
+    const [cardId, setCardId] = useState('')
 
     const { surname } = useParams()
 
@@ -34,11 +36,16 @@ const Graph = () => { // TODO: Loading screen
             minZoom={0.1}
             nodeTypes={{ parent: ParentNode, spouse: SpouseNode, child: ChildNode }}
             maxZoom={5}
-            onNodeClick={(_, { id }) => console.log(id)}
+            fitView
+            onNodeClick={(_, { id }) => setCardId(id)} // TODO: add database columns + add info cards
         >
             <Controls />
             <Background variant="dots" gap={25} size={1} />
         </ReactFlow>
+
+        {
+            cardId && <MemberCard id={cardId} close={() => setCardId('')}/>
+        }
     </div>
 }
 
