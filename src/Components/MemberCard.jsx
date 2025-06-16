@@ -9,8 +9,7 @@ const MemberCard = ({ id, close }) => {
         setData(getMember(id))
     }, [])
 
-    return <div style={{ width: '100%', height: '100vh', position: 'fixed', top: '0', left: '0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="ui card">
+    return <div className="ui card" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
             <div className="image">
                 <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" />
             </div>
@@ -29,7 +28,6 @@ const MemberCard = ({ id, close }) => {
                 <button onClick={close} className="ui button">Close</button>
             </div>
         </div>
-    </div>
 }
 
 export default MemberCard;

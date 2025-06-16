@@ -9,7 +9,13 @@ import '../Styles/app.css'
 import { useParams } from "react-router-dom";
 import MemberCard from "../Components/MemberCard";
 
-const Graph = () => { // TODO: Loading screen
+// TODO: adding family member
+// TODO: when button is clicked, hide button and show text to add sibling spouse or parent of target branch member
+// TODO: there will be options to cancel process or start new root 
+// TODO: after choosing banch target, it will show preview like John Doe's -> parent and when you click next
+// TODO: new window will pop up where u fill the creds
+
+const Graph = () => {
     const { members, spouseRelations, childRelations, buildNodes, buildEdges, setQuery } = useApiContext()
     const [nodes, setNodes] = useState([])
     const [edges, setEdges] = useState([])
@@ -26,7 +32,7 @@ const Graph = () => { // TODO: Loading screen
         setNodes([...buildNodes()])
         setEdges([...buildEdges()])
     }, [members, spouseRelations, childRelations])
-    
+
     return <div style={{ width: '99vw', height: '98vh', border: '2px black solid', borderRadius: '6px', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
         <ReactFlow
             nodes={nodes}
@@ -37,15 +43,17 @@ const Graph = () => { // TODO: Loading screen
             nodeTypes={{ parent: ParentNode, spouse: SpouseNode, child: ChildNode }}
             maxZoom={5}
             fitView
-            onNodeClick={(_, { id }) => setCardId(id)} // TODO: add database columns + add info cards
+            onNodeClick={(_, { id }) => setCardId(id)}
         >
             <Controls />
             <Background variant="dots" gap={25} size={1} />
         </ReactFlow>
 
         {
-            cardId && <MemberCard id={cardId} close={() => setCardId('')}/>
+            cardId && <MemberCard id={cardId} close={() => setCardId('')} />
         }
+
+        <button style={{ position: 'absolute', bottom: '8px', right: '5px' }} class="ui icon secondary inverted button">Add family member</button>
     </div>
 }
 
