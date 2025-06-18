@@ -5,9 +5,10 @@ import ParentNode from "../Misc/ParentNode";
 import SpouseNode from "../Misc/SpouseNode";
 import ChildNode from "../Misc/ChildNode";
 import '@xyflow/react/dist/style.css';
-import '../Styles/app.css'
+import '../Styles/graph.css'
 import { useParams } from "react-router-dom";
 import MemberCard from "../Components/MemberCard";
+import EditWindow from "../Components/EditWindow";
 
 // TODO: adding family member
 // TODO: when button is clicked, hide button and show text to add sibling spouse or parent of target branch member
@@ -22,6 +23,7 @@ const Graph = () => {
     const [cardId, setCardId] = useState('')
 
     const { surname } = useParams()
+    const [isEditing, setIsEditing] = useState(false)
 
     useEffect(() => {
         const query = `${surname.at(0).toUpperCase()}${surname.slice(1)}`
@@ -49,11 +51,10 @@ const Graph = () => {
             <Background variant="dots" gap={25} size={1} />
         </ReactFlow>
 
-        {
-            cardId && <MemberCard id={cardId} close={() => setCardId('')} />
-        }
+        { cardId && <MemberCard id={cardId} close={() => setCardId('')} /> }
+        { isEditing && <EditWindow close={() => setIsEditing(false)} /> }
 
-        <button style={{ position: 'absolute', bottom: '8px', right: '5px' }} className="ui icon secondary inverted button">Add family member</button>
+        <button onClick={() => setIsEditing(true)} style={{ display: `${isEditing ? 'none' : 'block'}`, position: 'absolute', bottom: '8px', right: '5px' }} className="ui icon secondary inverted button">Add family member</button>
     </div>
 }
 

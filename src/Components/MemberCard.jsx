@@ -9,7 +9,7 @@ const MemberCard = ({ id, close }) => {
         setData(getMember(id))
     }, [])
 
-    return <div className="ui card" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
+    return <div className="ui card member-card" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
             <div className="image">
                 <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" />
             </div>
@@ -25,6 +25,7 @@ const MemberCard = ({ id, close }) => {
                 </div>
             </div>
             <div className="extra content" style={{justifyContent: 'right', display: 'flex'}}>
+                <button onClick={() => console.log('Adding')} className="ui button primary">Add relative</button>
                 <button onClick={close} className="ui button">Close</button>
             </div>
         </div>

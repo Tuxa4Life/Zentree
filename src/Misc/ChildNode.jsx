@@ -1,7 +1,7 @@
 import { Handle } from "@xyflow/react";
 
 const ChildNode = ({ data }) => {
-    return <div style={{ position: 'relative', textAlign: 'center', padding: '10px', border: '1px solid black', borderRadius: '5px', backgroundColor: 'white', width: '150px' }}>
+    return <div className="node">
         <div>{data.label}</div>
         <Handle
             type="target"

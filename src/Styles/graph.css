@@ -1,0 +1,104 @@
+.react-flow__panel.bottom.right {
+    display: none;
+}
+
+.node {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: white;
+    width: 150px;
+    cursor: pointer;
+    transition: .2s all;
+}
+
+.node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.4);
+}
+
+.member-card {
+    z-index: 5;
+    animation: pop .1s both;
+    transform-origin: center !important;
+}
+
+@keyframes pop {
+    0% {
+        
+        transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.edit-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100dvh;
+    pointer-events: none;
+
+    display: flex;
+    justify-content: center;
+}
+
+.edit-window {
+    width: fit-content !important;
+    height: fit-content;
+
+    padding: 15px !important;
+    border-radius: 2px;
+    margin-top: 20px !important;
+    pointer-events: all;
+
+    animation: raw-pop .1s both;
+    transform-origin: center !important;
+}
+
+.edit-window h1 {
+    text-align: center;
+}
+
+.edit-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-panel * {
+    margin: 0;
+    padding: 0;
+}
+
+.edit-panel p {
+    font-size: 19px;
+}
+
+.edit-panel select {
+    font-size: 18px;
+    margin: 0 10px;
+}
+.edit-panel button {
+    margin-left: 10px !important;
+}
+
+.edit-window .buttons {
+    margin-top: 20px !important;
+    display: flex;
+    justify-content: right;
+}
+
+@keyframes raw-pop {
+    0% {
+        transform:  scale(0);
+    }
+    100% {
+        transform:  scale(1);
+    }
+}
