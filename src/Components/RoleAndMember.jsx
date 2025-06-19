@@ -19,7 +19,10 @@ const RoleAndMember = ({ member, role, setRole, setHideWindow, close }) => {
 
         <div className="new-branch-btn">
             <div class="ui horizontal divider">Or</div>
-            <button className="ui button grey">Start a new branch</button>
+            <button className="ui labeled icon button grey">
+                Start a new branch
+                <i class="add icon"></i>
+            </button>
         </div>
 
         <div className="buttons">
