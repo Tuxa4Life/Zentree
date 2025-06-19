@@ -20,7 +20,7 @@ const MemberCard = ({ id, addMember, close }) => {
                 </div>
                 <div className="description">
                     Gender: {data?.gender} <br />
-                    Date of Birth: {data?.dob || 'Unknown'} <br />
+                    { data?.dob && `Date of birth: ${data?.dob}` } <br />
                     { data?.dod && `Date of Death: ${data?.dod}` }
                 </div>
             </div>

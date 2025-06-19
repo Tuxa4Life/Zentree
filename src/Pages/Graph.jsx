@@ -10,12 +10,6 @@ import { useParams } from "react-router-dom";
 import MemberCard from "../Components/MemberCard";
 import EditWindow from "../Components/EditWindow";
 
-// TODO: adding family member
-// TODO: when button is clicked, hide button and show text to add sibling spouse or parent of target branch member
-// TODO: there will be options to cancel process or start new root 
-// TODO: after choosing banch target, it will show preview like John Doe's -> parent and when you click next
-// TODO: new window will pop up where u fill the creds
-
 const Graph = () => {
     const { members, spouseRelations, childRelations, buildNodes, buildEdges, setQuery } = useApiContext()
     const [nodes, setNodes] = useState([])

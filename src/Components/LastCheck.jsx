@@ -5,16 +5,21 @@ const LastCheck = ({ newMember, member, role, upload, close }) => {
                 <div className="header">
                     Are you sure?
                 </div>
-                <div className="description">
+                <br />
+                <div className="description" style={{display: `${member.id ? 'block' : 'none'}`}}>
                     <strong>{newMember.first_name} {newMember.last_name} </strong>
                     will be added as a
                     <span style={{ textDecoration: 'underline' }}> {role} </span>
                     for
                     <strong> {member.first_name} {member.last_name}</strong>.
                 </div>
+                <div className="description" style={{display: `${!member.id ? 'block' : 'none'}`}}>
+                    <strong>{newMember.first_name} {newMember.last_name} </strong>
+                    will be added as a new root member in the tree.
+                </div>
                 <div className="description">
                     <br />
-                    Birthday: {newMember.dob} <br />
+                    { newMember.dob && `Birthday: ${newMember.dob}` } <br />
                     { newMember.dod && `Deceased: ${newMember.dod}` }
                 </div>
             </div>

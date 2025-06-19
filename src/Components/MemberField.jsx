@@ -5,13 +5,14 @@ import { useState } from "react"
     const [birth, setBirth] = useState(null)
     const [death, setDeath] = useState(null)
     const [gender, setGender] = useState('other')
+    const [lastName, setLastName] = useState(surname || '')
 
     const submit = (e) => {
         e.preventDefault()
         if (birth && death && death < birth) { alert('Please check dates.'); return }
         setNewMember({
             first_name: name.at(0).toUpperCase() + name.slice(1),
-            last_name: surname,
+            last_name: lastName,
             dob: birth,
             dod: death,
             gender
@@ -30,7 +31,7 @@ import { useState } from "react"
                         <input value={name} onChange={e => setName(e.target.value)} type="text" required placeholder="First Name" />
                     </div>
                     <div className="field">
-                        <input type="text" disabled value={surname} />
+                        <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} required placeholder="Last Name"/>
                     </div>
                 </div>
             </div>

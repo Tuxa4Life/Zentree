@@ -22,6 +22,24 @@ const ApiProvider = ({ children }) => {
         supabase.rpc('get_children', { lastname_input: surname }).then(({ data }) => setChildRelations([...data || []]))
     }
 
+    const insertColumns = async (table, columns) => {
+        const response = await supabase.from(table).insert(columns).select();
+
+        if (response.error) {
+            alert(response.error.message)
+            console.log(response.error)
+        }
+        
+        return response.data
+    }
+
+    const updateItemsLocally = (instance, relative, role) => {
+        setMembers([...members, instance])
+        if (role === 'spouse') setSpouseRelations([...spouseRelations, { husband_id: relative.id, wife_id: instance.id }])
+        if (role === 'child') setChildRelations([...childRelations, { parent_id: relative.id, child_id: instance.id }])
+        if (role === 'parent') setChildRelations([...childRelations, { child_id: relative.id, parent_id: instance.id }])
+    }
+
     const buildTree = () => {
         const map = {};
         const hasParent = new Set();
@@ -177,7 +195,7 @@ const ApiProvider = ({ children }) => {
         return false
     }
 
-    const data = { members, spouseRelations, childRelations, getMember, buildNodes, buildEdges, setQuery }
+    const data = { members, spouseRelations, childRelations, getMember, buildNodes, buildEdges, setQuery, insertColumns, updateItemsLocally }
     return <ApiContext.Provider value={data}>
         {children}
     </ApiContext.Provider>
