@@ -31,8 +31,10 @@ const Graph = () => {
     }, [surname])
 
     useEffect(() => {
-        setNodes([...buildNodes()])
-        setEdges([...buildEdges()])
+        requestAnimationFrame(() => {
+            setNodes([...buildNodes()])
+            setEdges([...buildEdges()])
+        })
     }, [members, spouseRelations, childRelations])
 
     return <div style={{ width: '99vw', height: '98vh', border: '2px black solid', borderRadius: '6px', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>

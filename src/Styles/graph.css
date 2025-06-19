@@ -11,23 +11,22 @@
     background-color: white;
     width: 150px;
     cursor: pointer;
-    transition: .2s all;
+    transition: 0.2s all;
 }
 
 .node:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 3px 7px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.4);
 }
 
 .member-card {
     z-index: 5;
-    animation: pop .1s both;
+    animation: pop 0.1s both;
     transform-origin: center !important;
 }
 
 @keyframes pop {
     0% {
-        
         transform: translate(-50%, -50%) scale(0);
     }
     100% {
@@ -57,7 +56,7 @@
     margin-top: 20px !important;
     pointer-events: all;
 
-    animation: raw-pop .1s both;
+    animation: raw-pop 0.1s both;
     transform-origin: center !important;
 }
 
@@ -104,9 +103,32 @@
 
 @keyframes raw-pop {
     0% {
-        transform:  scale(0);
+        transform: scale(0);
     }
     100% {
-        transform:  scale(1);
+        transform: scale(1);
     }
+}
+
+.fields.card {
+    width: fit-content !important;
+    height: fit-content;
+
+    padding: 15px !important;
+    border-radius: 2px;
+    margin-top: 20px !important;
+    pointer-events: all;
+
+    animation: raw-pop 0.1s both;
+    transform-origin: center !important;
+}
+
+.cards.check {
+    width: fit-content !important;
+    height: fit-content;
+    pointer-events: all;
+
+    animation: raw-pop 0.1s both;
+    transform-origin: center !important;
+    margin-top: 20px;
 }

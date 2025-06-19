@@ -1,4 +1,4 @@
-const RoleAndMember = ({ member, role, setRole, setHideWindow, close }) => {
+const RoleAndMember = ({ member, role, setRole, setWindow, next, close }) => {
     return <div className="edit-window ui card">
         <h2 className="ui dividing header">Your are now adding a new relative to the tree!</h2>
 
@@ -14,19 +14,19 @@ const RoleAndMember = ({ member, role, setRole, setHideWindow, close }) => {
 
             <p>of</p>
 
-            <button onClick={() => setHideWindow(true)} className="ui button secondary inverted">{member.id ? `${member?.first_name} ${member?.last_name}` : 'Choose member'}</button>
+            <button onClick={() => setWindow(true)} className="ui button secondary inverted">{member.id ? `${member?.first_name} ${member?.last_name}` : 'Choose member'}</button>
         </div>
 
         <div className="new-branch-btn">
-            <div class="ui horizontal divider">Or</div>
+            <div className="ui horizontal divider">Or</div>
             <button className="ui labeled icon button grey">
                 Start a new branch
-                <i class="add icon"></i>
+                <i className="add icon"></i>
             </button>
         </div>
 
         <div className="buttons">
-            <button className={`ui button primary ${role && member.id ? '' : 'disabled'}`}>Next</button>
+            <button onClick={next} className={`ui button primary ${role && member.id ? '' : 'disabled'}`}>Next</button>
             <button onClick={close} className="ui button">Close</button>
         </div>
     </div>
