@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useApiContext } from '../Hooks/useContext'
 
-const MemberCard = ({ id, close }) => {
+const MemberCard = ({ id, addMember, close }) => {
     const { getMember } = useApiContext()
 
     const [data, setData] = useState()
@@ -25,7 +25,7 @@ const MemberCard = ({ id, close }) => {
                 </div>
             </div>
             <div className="extra content" style={{justifyContent: 'right', display: 'flex'}}>
-                <button onClick={() => console.log('Adding')} className="ui button primary">Add relative</button>
+                <button onClick={addMember} className="ui button primary">Add relative</button>
                 <button onClick={close} className="ui button">Close</button>
             </div>
         </div>

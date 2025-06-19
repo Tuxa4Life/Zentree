@@ -51,8 +51,8 @@ const Graph = () => {
             <Background variant="dots" gap={25} size={1} />
         </ReactFlow>
 
-        { cardId && <MemberCard id={cardId} close={() => setCardId('')} /> }
-        { isEditing && <EditWindow close={() => setIsEditing(false)} /> }
+        { (cardId && !isEditing) && <MemberCard id={cardId} addMember={() => setIsEditing(true)} close={() => setCardId('')} /> }
+        { isEditing && <EditWindow close={() => { setIsEditing(false); setCardId('') }} nodeId={cardId} /> }
 
         <button onClick={() => setIsEditing(true)} style={{ display: `${isEditing ? 'none' : 'block'}`, position: 'absolute', bottom: '8px', right: '5px' }} className="ui icon secondary inverted button">Add family member</button>
     </div>
